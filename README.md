@@ -58,6 +58,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Snapshot:
 
-![Image 1]('doc/s1.png')
-![Image 2]('doc/s2.png')
-![Image 3]('doc/s3.png')
+![Image1](doc/s1.png)
+
+![Image2](doc/s2.png)
+
+![Image3](doc/s3.png)
