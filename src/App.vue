@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Masonary/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Masonary from "./components/Masonary.vue"
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Masonary
   }
 }
 </script>
