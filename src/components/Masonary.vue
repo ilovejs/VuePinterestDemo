@@ -15,7 +15,7 @@
     <div>
       <b>Image Size Slider (manual responsive image):</b>
       <vue-slide-bar v-model="imageSize" @dragEnd="dragEnd"/>
-      <span id="slider">{{imageSize}}%</span>
+      <span id="slider">{{ imageSize }}%</span>
     </div>
     <div v-masonry
          transition-duration=".3s"
@@ -26,8 +26,8 @@
       <div class="row">
         <div v-masonry-tile class="item col-sm-6 col-md-3 col-lg-2"
              :style="{ maxWidth: imageSize + '%' }"
-             v-for="(post, _) in posts">
-          <div class="card p-1">
+             v-for="(post, index) in posts" v-bind:key="index">
+          <div class="card p-1" >
             <img class="card-img-top" :src="post.img_url" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><strong>{{ post.title }}</strong></h5>
@@ -61,9 +61,9 @@ export default {
     methods: {
         getPosts() {
             const baseUrl = 'http://localhost:5000';
-            axios.get(baseUrl + '/image/init')
+            axios.get(baseUrl + '/image/random')
                 .then(response => {
-                    console.log(Date.now() + ' Fetched: ', response.data['image_names'].length);
+                    // console.log(Date.now() + ' Fetched: ', response.data['image_names'].length);
                     for (const filename of response.data['image_names']) {
                         this.posts.push({
                             img_url: baseUrl + '/image/' + filename,
@@ -71,12 +71,14 @@ export default {
                             content: 'Paragraph: ' + this.randomStr(20)
                         })
                     }
+                }).catch(e=> {
+                    alert(e)
                 })
         },
         handleScroll() {
             let scrollHeight = window.scrollY;
             let maxHeight = window.document.body.scrollHeight - window.document.documentElement.clientHeight;
-            console.log('scrollHeight: ', scrollHeight, 'maxHeight: ', maxHeight);
+            // console.log('scrollHeight: ', scrollHeight, 'maxHeight: ', maxHeight);
             if (scrollHeight >= maxHeight - 500) {
                 this.getPosts()
             }
@@ -89,7 +91,7 @@ export default {
             this.$redrawVueMasonry();
         },
         dragEnd() {
-            console.log('Slider set image size; ' + this.imageSize);
+            // console.log('Slider set image size; ' + this.imageSize);
             this.reDraw();
         },
         randomStr(len) {
@@ -101,7 +103,7 @@ export default {
 
 <style scoped>
   .item {
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
   }
 </style>
