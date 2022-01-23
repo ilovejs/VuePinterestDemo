@@ -2,6 +2,8 @@
 
 Vue front end for infinite scroll Pinterest site.
 
+Flask backend see [repo](https://github.com/ilovejs/VuePinterestBE)
+
 ### Vue shortcut
 ```
 yarn install
